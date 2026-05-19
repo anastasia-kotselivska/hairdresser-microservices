@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  service-catalog-07:
+    build: ./service_catalog
+    ports:
+      - "8007:8000"
+    networks:
+      - lab-network
+
+  appointment-service-07:
+    build: ./appointment_service
+    ports:
+      - "9007:8000"
+    depends_on:
+      - service-catalog-07
+    networks:
+      - lab-network
+
+networks:
+  lab-network:
+    driver: bridge
